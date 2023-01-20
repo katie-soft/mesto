@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.centered-block {
+    margin: 0 auto;
+}
+
+.img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.page {
+    background-color: #000;
+    font-family: Inter, Arial, sans-serif;
+}

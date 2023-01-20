@@ -1,0 +1,29 @@
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 282px);
+    grid-gap: 17px;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.gallery__card {
+    height: 361px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card__content {
+    margin: 25px 15px 31px 21px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__text {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

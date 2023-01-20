@@ -1,0 +1,94 @@
+.btn {
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover {
+    opacity: 0.6;
+}
+
+.btn_add {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 2px;
+}
+
+.btn_edit {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #FFFFFF;
+    margin-left: 18px;
+    align-self: flex-end;
+    margin-bottom: 7px;
+}
+
+.btn__icon_edit {
+    display: block;
+    height: 10px;
+    width: 10px;
+}
+
+.btn_like {
+    width: 22px;
+    height: 19px;
+    border: none;
+    padding: 0;
+    margin-left: 5px;
+    flex-shrink: 0;
+    background-image: url(../../images/like.svg);
+}
+
+.btn_like_active {
+    background-image: url(../../images/like_active.svg);
+}
+
+.btn_save {
+    background-color: #000000;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 17px;
+    padding: 14px 82px;
+    margin-top: 18px;
+}
+
+.btn_save:hover {
+    opacity: 0.8;
+}
+
+.btn_close {
+    background-image: url(../../images/close.svg);
+    width: 32px;
+    height: 32px;
+    border: none;
+    position: absolute;
+    top: -38px;
+    right: -38px;
+
+}
+
+@media (max-width: 560px) {
+    .btn_edit {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+        margin-bottom: 12px;
+        padding: 4px;
+    }
+
+    .btn__icon_edit {
+        height: 7.5px;
+        width: 7.5px;
+    }
+}
+
+@media (max-width: 500px) {
+    .btn_close {
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        top: -31px;
+        right: 0;
+    }
+}
