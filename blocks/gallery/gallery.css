@@ -11,6 +11,7 @@
     background: #FFFFFF;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
 
 .card__content {
@@ -26,4 +27,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.card__img {
+    object-fit: cover;
+    height: 78%;
 }

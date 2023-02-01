@@ -65,7 +65,16 @@
     position: absolute;
     top: -38px;
     right: -38px;
+}
 
+.btn_trash {
+    background-image: url(../../images/trash.svg);
+    width: 18px;
+    height: 19px;
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 @media (max-width: 560px) {

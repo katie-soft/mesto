@@ -7,6 +7,7 @@
     <meta name="description" content="Интерактивная страница для публикации фотографий">
     <meta name="keywords" content="фото инстаграм путешествия">
     <meta name="author" content="Екатерина М.">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon.png">
     <title>Mesto</title>
     <link rel="stylesheet" href="pages/index.css">
 </head>
@@ -39,48 +40,6 @@
         </section>
 
         <section class="gallery centered-block">
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <div class="card__content flex-row">
-                    <span class="card__text">Карачаево-Черкессия</span>
-                    <button class="btn btn_like"></button>
-                </div>
-            </div>
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/elbrus.jpg" alt="Эльбрус">
-                <div class="card__content flex-row">
-                    <span class="card__text">Гора Эльбрус</span>
-                    <button class="btn btn_like"></button>
-                </div>
-            </div>
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/dombay.jpg" alt="Домбай">
-                <div class="card__content flex-row">
-                    <span class="card__text">Домбай</span>
-                    <button class="btn btn_like"></button>
-                </div>
-            </div>
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/elbrus.jpg" alt="Эльбрус">
-                <div class="card__content flex-row">
-                    <span class="card__text">Гора Эльбрус</span>
-                    <button class="btn btn_like"></button>
-                </div>
-            </div>
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/dombay.jpg" alt="Домбай">
-                <div class="card__content flex-row">
-                    <span class="card__text">Домбай</span>
-                    <button class="btn btn_like"></button>
-                </div>
-            </div>
-            <div class="gallery__card">
-                <img class="img card__img" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <div class="card__content flex-row">
-                    <span class="card__text">Карачаевск</span>
-                    <button class="btn btn_like"></button>                        
-                </div>
-            </div>
         </section>
     </main>
 
@@ -91,15 +50,38 @@
     <div class="popup popup_edit-profile">
         <div class="popup__container flex-column">
             <span class="popup__title">Редактировать профиль</span>
-            <form class="form_edit-profile flex-column" action="">
+            <form class="popup__form form_edit-profile flex-column" action="">
                 <input class="popup__input popup__input_name" type="text" placeholder="Ваше имя">
                 <input class="popup__input popup__input_job" type="text" placeholder="О себе">
                 <input type="submit" class="btn btn_save" value="Сохранить"></input>
             </form>
             <button class="btn btn_close"></button>
         </div>
-
     </div>
+
+    <div class="popup popup_add-card">
+        <div class="popup__container flex-column">
+            <span class="popup__title">Новое место</span>
+            <form class="popup__form form_add-card flex-column" action="">
+                <input class="popup__input popup__input_card-name" type="text" placeholder="Название">
+                <input class="popup__input popup__input_card-link" type="text" placeholder="Ссылка на картинку">
+                <input type="submit" class="btn btn_save" value="Создать"></input>
+            </form>
+            <button class="btn btn_close"></button>
+        </div>
+    </div>
+
+    <template id="template__card">
+        <div class="gallery__card">
+            <img class="img card__img" src="" alt="">
+            <button class="btn btn_trash"></button>
+            <div class="card__content flex-row">
+                <span class="card__text"></span>
+                <button class="btn btn_like"></button>
+            </div>
+        </div>
+    </template>   
+    
 
     <script src="./scripts/script.js"></script>
 </body>
