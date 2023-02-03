@@ -36,6 +36,8 @@ function appendCard(cards) {
         initCard.querySelector('.card__img').src = cards[key].link;
         initCard.querySelector('.card__text').textContent = cards[key].name;
 
+        initCard.querySelector('.card__img').addEventListener('click', openFullImg);
+
         gallery.append(initCard);
     }
 }
@@ -44,8 +46,8 @@ appendCard(initialCards);
 
 // Открытие попапа (profile edit)
 
-let editProfileBtn = document.querySelector('.user-profile .btn_edit');
-let editProfilePopup = document.querySelector('.popup_edit-profile');
+const editProfileBtn = document.querySelector('.user-profile .btn_edit');
+const editProfilePopup = document.querySelector('.popup_edit-profile');
 
 editProfileBtn.addEventListener('click', () => {
     editProfilePopup.classList.add('popup_opened');
@@ -53,16 +55,29 @@ editProfileBtn.addEventListener('click', () => {
 
 // Открытие попапа (add card)
 
-let addCardBtn = document.querySelector('.btn_add');
-let addCardPopup = document.querySelector('.popup_add-card');
+const addCardBtn = document.querySelector('.btn_add');
+const addCardPopup = document.querySelector('.popup_add-card');
 
 addCardBtn.addEventListener('click', () => {
     addCardPopup.classList.add('popup_opened');
 });
 
+// Открытие попапа (full img)
+
+const fullImgPopup = document.querySelector('.popup_full-img');
+
+function openFullImg() {
+
+    fullImgPopup.querySelector('.popup__img').src = this.src;
+    fullImgPopup.querySelector('.popup__img').alt = this.nextElementSibling.nextElementSibling.children[0].innerText;
+    fullImgPopup.querySelector('.full-img__title').innerText = this.nextElementSibling.nextElementSibling.children[0].innerText;
+
+    fullImgPopup.classList.add('popup_opened');
+}
+
 // Закрытие попапа
 
-let closePopupBtns = document.querySelectorAll('.popup .btn_close');
+const closePopupBtns = document.querySelectorAll('.popup .btn_close');
 closePopupBtns.forEach((btn) => btn.addEventListener('click', closePopup));
 
 function closePopup(evt) {
@@ -72,9 +87,9 @@ function closePopup(evt) {
 
 // Обработчик отправки формы (profile edit)
 
-let formEditProfile = document.querySelector('.form_edit-profile');
-let nameInput = formEditProfile.querySelector('.popup__input_name');
-let jobInput = formEditProfile.querySelector('.popup__input_job');
+const formEditProfile = document.querySelector('.form_edit-profile');
+const nameInput = formEditProfile.querySelector('.popup__input_name');
+const jobInput = formEditProfile.querySelector('.popup__input_job');
 
 function handleFormSubmit(evt) {
     evt.preventDefault();
@@ -95,15 +110,14 @@ formEditProfile.addEventListener('submit', handleFormSubmit);
 
 // Обработчик отправки формы (add card)
 
-let formAddCard = document.querySelector('.form_add-card');
-let cardName = formAddCard.querySelector('.popup__input_card-name');
-let cardLink = formAddCard.querySelector('.popup__input_card-link');
+const formAddCard = document.querySelector('.form_add-card');
+const cardName = formAddCard.querySelector('.popup__input_card-name');
+const cardLink = formAddCard.querySelector('.popup__input_card-link');
 
 function addNewCard(evt) {
 
     evt.preventDefault();
 
-    // Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
     if (cardName.value && cardLink.value) {
         let obj = { name: cardName.value, link: cardLink.value };
         initialCards.push(obj);
@@ -111,12 +125,11 @@ function addNewCard(evt) {
         const newCard = cardTemplate.querySelector('.gallery__card').cloneNode(true);
         newCard.querySelector('.card__img').src = cardLink.value;
         newCard.querySelector('.card__text').textContent = cardName.value;
+        newCard.querySelector('.card__img').addEventListener('click', openFullImg);
         newCard.querySelector('.btn_like').addEventListener('click', like);
         newCard.querySelector('.btn_trash').addEventListener('click', deleteCard);
 
         gallery.prepend(newCard);
-
-
 
         cardLink.value = '';
         cardName.value = '';
@@ -146,4 +159,6 @@ delBtns.forEach(el => el.addEventListener('click', deleteCard));
 
 function deleteCard() {
     this.closest('.gallery__card').remove();
+
+    //дописать удаление из initialCards
 };

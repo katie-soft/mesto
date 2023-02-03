@@ -32,4 +32,5 @@
 .card__img {
     object-fit: cover;
     height: 78%;
+    cursor: pointer;
 }
