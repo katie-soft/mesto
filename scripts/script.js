@@ -2,28 +2,28 @@
 
 const initialCards = [
     {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Orange',
+        link: 'https://images.unsplash.com/photo-1667807028697-5b192af93bcf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEwfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60'
     },
     {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Ice',
+        link: 'https://images.unsplash.com/photo-1675538071574-2afecb89e2a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEzfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60'
     },
     {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'City',
+        link: 'https://images.unsplash.com/photo-1668460223474-a3cd5e145b21?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8aVVJc25WdGpCMFl8fGVufDB8fHx8&auto=format&fit=crop&w=2000&q=60'
     },
     {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Forest',
+        link: 'https://images.unsplash.com/photo-1675423750263-94f7ea499f4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE2fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60'
     },
     {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Lines',
+        link: 'https://images.unsplash.com/photo-1675259308300-72ce08596068?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDQ4fGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60'
     },
     {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Blue',
+        link: 'https://images.unsplash.com/photo-1675563628868-82e6762de993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUxfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=60'
     }
 ];
 
@@ -36,54 +36,44 @@ function appendCard(cards) {
         initCard.querySelector('.card__img').src = cards[key].link;
         initCard.querySelector('.card__text').textContent = cards[key].name;
 
-        initCard.querySelector('.card__img').addEventListener('click', openFullImg);
-
         gallery.append(initCard);
     }
 }
 
 appendCard(initialCards);
 
-// Открытие попапа (profile edit)
+// Открытие попапа
 
-const editProfileBtn = document.querySelector('.user-profile .btn_edit');
-const editProfilePopup = document.querySelector('.popup_edit-profile');
-
-editProfileBtn.addEventListener('click', () => {
-    editProfilePopup.classList.add('popup_opened');
-});
-
-// Открытие попапа (add card)
-
-const addCardBtn = document.querySelector('.btn_add');
-const addCardPopup = document.querySelector('.popup_add-card');
-
-addCardBtn.addEventListener('click', () => {
-    addCardPopup.classList.add('popup_opened');
-});
-
-// Открытие попапа (full img)
-
-const fullImgPopup = document.querySelector('.popup_full-img');
-
-function openFullImg() {
-
-    fullImgPopup.querySelector('.popup__img').src = this.src;
-    fullImgPopup.querySelector('.popup__img').alt = this.nextElementSibling.nextElementSibling.children[0].innerText;
-    fullImgPopup.querySelector('.full-img__title').innerText = this.nextElementSibling.nextElementSibling.children[0].innerText;
-
-    fullImgPopup.classList.add('popup_opened');
+function openPopup(popupType) {
+    document.querySelector(popupType).classList.add('popup_opened');
 }
+
+document.querySelector('.user-profile .btn_edit').addEventListener('click', () => {
+    openPopup('.popup_edit-profile');
+});
+
+document.querySelector('.user-profile .btn_add').addEventListener('click', () => {
+    openPopup('.popup_add-card');
+});
 
 // Закрытие попапа
 
-const closePopupBtns = document.querySelectorAll('.popup .btn_close');
-closePopupBtns.forEach((btn) => btn.addEventListener('click', closePopup));
-
-function closePopup(evt) {
-    //editProfilePopup.classList.remove('popup_opened');
-    evt.target.parentElement.parentElement.classList.remove('popup_opened');
+function closePopup() {
+    document.querySelector('.popup_opened').classList.remove('popup_opened');
 }
+
+document.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('btn_close') || evt.target === document.querySelector('.popup_opened')) {
+        closePopup();
+    }
+})
+
+document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+        closePopup();
+    }
+})
+
 
 // Обработчик отправки формы (profile edit)
 
@@ -103,7 +93,7 @@ function handleFormSubmit(evt) {
         document.querySelector('.user-profile__description').textContent = jobInput.value;
     }
 
-    closePopup(evt);
+    closePopup();
 }
 
 formEditProfile.addEventListener('submit', handleFormSubmit);
@@ -120,45 +110,44 @@ function addNewCard(evt) {
 
     if (cardName.value && cardLink.value) {
         let obj = { name: cardName.value, link: cardLink.value };
-        initialCards.push(obj);
-
-        const newCard = cardTemplate.querySelector('.gallery__card').cloneNode(true);
-        newCard.querySelector('.card__img').src = cardLink.value;
-        newCard.querySelector('.card__text').textContent = cardName.value;
-        newCard.querySelector('.card__img').addEventListener('click', openFullImg);
-        newCard.querySelector('.btn_like').addEventListener('click', like);
-        newCard.querySelector('.btn_trash').addEventListener('click', deleteCard);
-
-        gallery.prepend(newCard);
-
+        initialCards.unshift(obj);
+        gallery.innerHTML = '';
         cardLink.value = '';
         cardName.value = '';
-
-        closePopup(evt);
+        appendCard(initialCards);
+        closePopup();
     }
 }
 
 formAddCard.addEventListener('submit', addNewCard);
 
-// 'Like' button
+// действия с карточками (open, like, delete)
 
-const likeBtns = document.querySelectorAll('.btn_like');
+gallery.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('btn_like')) {
+        like(evt.target);
+    } else if (evt.target.classList.contains('btn_trash')) {
+        deleteCard(evt.target);
+    } else if (evt.target.classList.contains('card__img')) {
+        openFullImg(evt.target);
+    }
+});
 
-likeBtns.forEach(el => el.addEventListener('click', like));
-
-function like() {
-    this.classList.toggle('btn_like_active');
+function like(item) {
+    item.classList.toggle('btn_like_active');
 };
 
-
-// 'Trash' button (delete card)
-
-const delBtns = document.querySelectorAll('.btn_trash');
-
-delBtns.forEach(el => el.addEventListener('click', deleteCard));
-
-function deleteCard() {
-    this.closest('.gallery__card').remove();
+function deleteCard(item) {
+    item.closest('.gallery__card').remove();
 
     //дописать удаление из initialCards
 };
+
+function openFullImg(item) {
+    const fullImgPopup = document.querySelector('.popup_full-img');
+    fullImgPopup.querySelector('.popup__img').src = item.src;
+    fullImgPopup.querySelector('.popup__img').alt = item.nextElementSibling.nextElementSibling.children[0].innerText;
+    fullImgPopup.querySelector('.full-img__title').innerText = item.nextElementSibling.nextElementSibling.children[0].innerText;
+
+    openPopup('.popup_full-img');
+}
