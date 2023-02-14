@@ -69,6 +69,3 @@ const enableValidation = (selectors) => {
 }
 
 enableValidation(selectors);
-
-
-
