@@ -1,0 +1,17 @@
+.form__input-error {
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    display: none;
+    max-width: 358px;
+}
+
+.form__input-error_active {
+    display: block;
+}
+
+.form__input_type_error {
+    border-bottom: 1px solid #FF0000;
+}

@@ -57,6 +57,13 @@
     opacity: 0.8;
 }
 
+.btn_save_inactive {
+    background-color: #FFF;
+    color: #C4C4C4;
+    border: 1px solid #C4C4C4;
+    cursor: auto;
+}
+
 .btn_close {
     background-image: url(../../images/close.svg);
     width: 32px;

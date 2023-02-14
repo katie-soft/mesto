@@ -50,10 +50,12 @@
     <div class="popup popup_edit-profile">
         <div class="popup__container flex-column">
             <span class="popup__title">Редактировать профиль</span>
-            <form class="popup__form form_edit-profile flex-column" action="">
-                <input class="popup__input popup__input_name" type="text" placeholder="Ваше имя">
-                <input class="popup__input popup__input_job" type="text" placeholder="О себе">
-                <input type="submit" class="btn btn_save" value="Сохранить"></input>
+            <form class="popup__form form_edit-profile flex-column" action="" novalidate>
+                <input class="popup__input popup__input_name" id="name-input" type="text" placeholder="Ваше имя" required minLength="2" maxLength="40">
+                <span class="name-input-error form__input-error">Вы пропустили это поле.</span>
+                <input class="popup__input popup__input_job" id="job-input" type="text" placeholder="О себе" required minLength="2" maxLength="200">
+                <span class="job-input-error form__input-error">Вы пропустили это поле.</span>
+                <input type="submit" class="btn btn_save btn_save_inactive" value="Сохранить" disabled></input>
             </form>
             <button class="btn btn_close"></button>
         </div>
@@ -62,10 +64,12 @@
     <div class="popup popup_add-card">
         <div class="popup__container flex-column">
             <span class="popup__title">Новое место</span>
-            <form class="popup__form form_add-card flex-column" action="">
-                <input class="popup__input popup__input_card-name" type="text" placeholder="Название">
-                <input class="popup__input popup__input_card-link" type="text" placeholder="Ссылка на картинку">
-                <input type="submit" class="btn btn_save" value="Создать"></input>
+            <form class="popup__form form_add-card flex-column" action="" novalidate>
+                <input class="popup__input popup__input_card-name" id="card-name-input" type="text" placeholder="Название" required minLength="2" maxLength="30">
+                <span class="card-name-input-error form__input-error">Вы пропустили это поле.</span>
+                <input class="popup__input popup__input_card-link" id="card-link-input" type="url" placeholder="Ссылка на картинку" required>
+                <span class="card-link-input-error form__input-error">Введите адрес сайта.</span>
+                <input type="submit" class="btn btn_save btn_save_inactive" value="Создать" disabled></input>
             </form>
             <button class="btn btn_close"></button>
         </div>
@@ -92,5 +96,6 @@
     
 
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

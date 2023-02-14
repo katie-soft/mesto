@@ -74,26 +74,17 @@ document.addEventListener('keydown', function (evt) {
     }
 })
 
-
 // Обработчик отправки формы (profile edit)
 
 const formEditProfile = document.querySelector('.form_edit-profile');
-const nameInput = formEditProfile.querySelector('.popup__input_name');
-const jobInput = formEditProfile.querySelector('.popup__input_job');
-
 function handleFormSubmit(evt) {
     evt.preventDefault();
 
-    // Так мы можем определить свою логику отправки. О том, как это делать, расскажем позже.
-    if (nameInput.value) {
-        document.querySelector('.user-profile__name').textContent = nameInput.value;
+    if (formIsValid(formEditProfile)) {
+        document.querySelector('.user-profile__name').textContent = formEditProfile.querySelector('.popup__input_name').value;
+        document.querySelector('.user-profile__description').textContent = formEditProfile.querySelector('.popup__input_job').value;
+        closePopup();
     }
-
-    if (jobInput.value) {
-        document.querySelector('.user-profile__description').textContent = jobInput.value;
-    }
-
-    closePopup();
 }
 
 formEditProfile.addEventListener('submit', handleFormSubmit);
@@ -108,12 +99,14 @@ function addNewCard(evt) {
 
     evt.preventDefault();
 
-    if (cardName.value && cardLink.value) {
+    if (formIsValid(formAddCard)) {
+
         let obj = { name: cardName.value, link: cardLink.value };
         initialCards.unshift(obj);
         gallery.innerHTML = '';
         cardLink.value = '';
         cardName.value = '';
+        setSubmitButtonState(formAddCard, false);
         appendCard(initialCards);
         closePopup();
     }
