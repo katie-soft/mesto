@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
     constructor(allSelectors, formSelector) {
         this._selectors = allSelectors;
         this.formElement = document.querySelector(formSelector);
@@ -61,5 +61,3 @@ class FormValidator {
         this._setEventListeners();
     };
 }
-
-export { FormValidator };

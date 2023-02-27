@@ -1,8 +1,9 @@
-class Card {
-    constructor(name, link, templateSelector) {
+export default class Card {
+    constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -34,8 +35,9 @@ class Card {
             this._like(evt.target);
         } else if (evt.target.classList.contains('btn_trash')) {
             this._deleteCard(evt.target);
-        } else if (evt.target.classList.contains('card__img')) {
-            this._openFullImg(evt.target);
+        }
+        else if (evt.target.classList.contains('card__img')) {
+            this._handleCardClick(this._name, this._link)
         }
     }
 
@@ -47,16 +49,4 @@ class Card {
         item.closest('.gallery__card').remove();
         //дописать удаление из initialCards
     };
-
-    _openFullImg(item) {
-        const fullImgPopup = document.querySelector('.popup_full-img');
-        fullImgPopup.querySelector('.popup__img').src = item.src;
-        fullImgPopup.querySelector('.popup__img').alt = item.nextElementSibling.nextElementSibling.children[0].innerText;
-        fullImgPopup.querySelector('.full-img__title').innerText = item.nextElementSibling.nextElementSibling.children[0].innerText;
-
-        fullImgPopup.classList.add('popup_opened');
-    };
 }
-
-export { Card };
-
